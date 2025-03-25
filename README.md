@@ -42,7 +42,7 @@ TODO app that uses Docker、FastAPI、PostgreSQL
 
 Refer to requirements.txt for more information on the versions of libraries used.
 
-<p align="right">(<a href="#top">トップへ</a>)</p>
+<p align="right">(<a href="#top">Top</a>)</p>
 
 ## Directory Structure
 
@@ -112,7 +112,7 @@ listen_addresses = '*'
 ### initdb/setup.sql
 SQL to be executed when creating the container for the first time. Create the Task table
 
-<p align="right">(<a href="#top">トップへ</a>)</p>
+<p align="right">(<a href="#top">Top</a>)</p>
 
 ## Building Environment
 In the directory that docker-compose.yml is located, run the following command
