@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-## 使用技術一覧
+## Used Frameworks and Languages
 
 <!-- シールド一覧 -->
 <!-- 該当するプロジェクトの中から任意のものを選ぶ-->
@@ -15,36 +15,36 @@
   <img src="https://img.shields.io/badge/-Docker-1488C6.svg?logo=docker&style=for-the-badge">
 </p>
 
-## 目次
+## Table of Contents
 
-1. [プロジェクトについて](#プロジェクトについて)
-2. [環境](#環境)
-3. [ディレクトリ構成](#ディレクトリ構成)
-4. [環境構築](#環境構築)
+1. [About this project](#プロジェクトについて)
+2. [Environment](#環境)
+3. [Directory Structure](#ディレクトリ構成)
+4. [Building Environment](#環境構築)
 
 <!-- プロジェクトについて -->
 
-## プロジェクトについて
+## About this project
 
-Docker、FastAPI、PostgreSQL を使用したTODOアプリ
+TODO app that uses Docker、FastAPI、PostgreSQL
 
-<p align="right">(<a href="#top">トップへ</a>)</p>
+<p align="right">(<a href="#top">Top</a>)</p>
 
-## 環境
+## Environment
 
 <!-- 言語、フレームワーク、ミドルウェア、インフラの一覧とバージョンを記載 -->
 
-| 言語・フレームワーク  | バージョン |
-| --------------------- | ---------- |
-| Python                | 3.10       |
-| FastAPI               | 0.100.0    |
-| PostgreSQL            | 15.0       |
+| Language and Framework | Version |
+|------------------------|---------|
+| Python                 | 3.10    |
+| FastAPI                | 0.100.0 |
+| PostgreSQL             | 15.0    |
 
-その他のパッケージのバージョンは requirements.txt を参照してください
+Refer to requirements.txt for more information on the versions of libraries used.
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
-## ディレクトリ構成
+## Directory Structure
 
 <!-- Treeコマンドを使ってディレクトリ構成を記載 -->
 ```
@@ -67,56 +67,55 @@ Docker、FastAPI、PostgreSQL を使用したTODOアプリ
 ```
 
 ### .env
-環境変数を記載
+Environment Variables
 
 ### docker-compose.yml
-作成するコンテナの内容
+Docker compose file
 
 ### Dockerfile
 
-appディレクトリをtodo_appコンテナに作成
+create app directory in todo app container
 ```
 WORKDIR /app
 ```
 
-localのappディレクトリにあるファイルをコンテナのappディレクトリにコピー
+copy local app directory to todo app container
 ```
 COPY ./app /app
 ```
 
-requirements.txtから必要なライブラリをinstall
+install libraries in requirements.txt
 ```
 RUN pip install --no-cache-dir -r /app/requirements.txt
 ```
 
-uvicornでFastAPIアプリケーションを起動
+start FastAPI server with uvicorn
 ```
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
 ```
 
 ### app/database.py
-データベースを直接操作するメソッドとその際に必要なメソッドを記載
+Includes methods for connecting to the database and executing SQL
 
 ### app/main.py
-APIの処理を記載
+Writes about the API methods.
 
 ### app/requirements.txt
-Pythonで使用するライブラリを記載
+Requirements for the libraries used in the project
 
 ### config/postgresql.conf
-postgreSQLのコンテナがtodo_appのコンテナからアクセスできるように、以下を記載
+Has the line below so that the postgreSQL container can be accessed from the todo_app container
 ```
 listen_addresses = '*'
 ```
 
 ### initdb/setup.sql
-コンテナを初めて作成するときに実行されるsqlを記載。Taskテーブルを作成する
+SQL to be executed when creating the container for the first time. Create the Task table
 
 <p align="right">(<a href="#top">トップへ</a>)</p>
 
-## 環境構築
-
-docker-compose.ymlがあるディレクトリで以下のコマンドを実行
+## Building Environment
+In the directory that docker-compose.yml is located, run the following command
 ```
 $ docker-compose up --build
 ```
